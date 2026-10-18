@@ -125,11 +125,14 @@ def submit(url: str, ca: str | None) -> None:
     sub |= {"action": Policy.ACTION, "cameras": list(Policy.CAMERAS),  # from policy.py, so they always match
             "depth": list(getattr(Policy, "DEPTH", []))}
     place = (yaml.safe_load(PLACEMENT.read_text()) or {}) if PLACEMENT.exists() else {}
-    if place.get("rollouts"):
+    entries = place.get("rollouts") or []
+    changes = "different" in (str(sub.get("objects")).strip().lower(), str(sub.get("layout")).strip().lower())
+    want = sub.get("rollouts", 10)
+    if changes and len(entries) != want:
+        sys.exit(f"objects or layout is \"different\" in submission.yaml, so submission/placement.yaml lists every "
+                 f"rollout: it has {len(entries)} {'entry' if len(entries) == 1 else 'entries'}, rollouts is {want}")
+    if entries:
         sub["placement"] = place  # the cell checks it, and says what is wrong
-    elif "different" in (str(sub.get("objects")).strip().lower(), str(sub.get("layout")).strip().lower()):
-        sys.exit("objects or layout is \"different\" in submission.yaml: list each rollout in "
-                 "submission/placement.yaml (its comments show how)")
     out = CellClient(url, "", ca).submit(sub)
     REQUEST.write_text(json.dumps({"url": url, **out}))
     REQUEST.chmod(0o600)
