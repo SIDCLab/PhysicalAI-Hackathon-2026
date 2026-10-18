@@ -1,0 +1,19 @@
+# Where the objects go in each rollout, and what your policy is told. Sent with: uv run run.py --submit
+#
+# Fill this in when objects or layout is "different" in submission.yaml.
+# If both are "same", leave it empty: we use the default setup (8 screws and the yellow bin, as in the twin).
+#
+# One entry per rollout, in order; with fewer entries than rollouts, the list repeats.
+# Positions: x, y in mm in the robot frame (the same x, y as obs["tcp_pose"]), and an optional yaw in degrees.
+# A screw's position is its head, and its yaw points from the head to the tip.
+#
+# rollouts:
+#   - prompt: Put the screw into the yellow bin.   # optional; default: task in submission.yaml
+#     objects:
+#       screw: [420, -100, 30]
+#       bin: [510, 110]
+#   - objects:
+#       screw: [[380, 50, 90], [400, -20, 0]]      # several of a kind: a list of positions
+#       bin: [510, 110]
+
+rollouts: []

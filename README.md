@@ -14,6 +14,7 @@ the actions you return and enforces every safety limit.
 | `run.py` | Checks your policy on the mock, submits, and runs it on the cell. |
 | `mock_cell.py` | A local stand-in for the cell, with the same API and limits (`run.py --mock` starts it). |
 | `submission/submission.yaml` | Your team, model and task. |
+| `submission/placement.yaml` | Where the objects go in each rollout, and its prompt (only if they change). |
 | `calibration/` | The real cameras' calibration, frame definitions and `geometry.py` (pixel ↔ table). |
 | `cell_client.py` | The client library. Do not edit it. |
 
@@ -72,15 +73,19 @@ there; it only checks that your policy and the cell understand each other.
 
 ## 4. Describe your task and submit
 
-Fill in `submission/submission.yaml` (each field has a comment), then send it:
+Fill in `submission/submission.yaml` (each field has a comment), and `submission/placement.yaml` if your objects
+or layout change between rollouts, then send it:
 
 ```bash
 uv run run.py --submit
 ```
 
 Post the request id it prints, such as `q3ac71f`, in `#data-and-testbed-requests` to book a slot (30 minutes).
-`ACTION`, `CAMERAS` and `DEPTH` come from `policy.py` by themselves. Anything marked `different` in your submission
-changes between rollouts, so your policy has to find it in the images.
+`ACTION`, `CAMERAS` and `DEPTH` come from `policy.py` by themselves. If objects and layout are both `same`, we set up
+the default scene (8 screws and the yellow bin, as in the twin) every rollout. Otherwise list each rollout in
+`placement.yaml`: where each object goes, and optionally a `prompt`, the instruction your policy gets in
+`obs["trial"]["instruction"]` (default: your `task`). Anything that changes between rollouts, your policy has to
+find in the images.
 
 `--submit` also saves `.request.json`: keep that file, and keep it private (your client needs it, and it holds the
 secret for your request). We review the request and approve it, or reject it with a reason. Check where it stands:
