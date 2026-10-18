@@ -1,10 +1,12 @@
 """Run your policy on the cell, or on a local mock of it.
 
-    uv run run.py --mock --checkpoint <path>     # test against a local mock (3 trials)
-    uv run run.py --submit                       # send submission/submission.yaml; we approve it into a run
-    uv run run.py --status                       # is it approved yet? once it is: your results link
-    uv run run.py --download                     # your run's recorded LeRobotDataset, for LeRobotDataset("manipbench/<run>")
-    uv run run.py --checkpoint <path>            # during your slot: runs your approved submission
+    uv run run.py --mock         # check formats and connection against a local mock (3 rollouts)
+    uv run run.py --submit       # send submission/submission.yaml; we approve it into a run
+    uv run run.py --status       # is it approved yet? once it is: your results link
+    uv run run.py                # during your slot: runs your approved submission
+    uv run run.py --download     # your run's recorded LeRobotDataset, for LeRobotDataset("manipbench/<run>")
+
+Load your model in policy.py, or pass its path with --checkpoint <path> (given to Policy.__init__).
 """
 from __future__ import annotations
 
@@ -127,7 +129,7 @@ def submit(url: str, ca: str | None) -> None:
     print(f"submitted as request {out['request_id']}.\n"
           f"  Next: book a 30-minute slot in #data-and-testbed-requests with this id.\n"
           f"  `uv run run.py --status` shows when it is approved, and then your results link.\n"
-          f"  During your slot: `uv run run.py --checkpoint <path>`, and leave it running.\n"
+          f"  During your slot: `uv run run.py`, and leave it running.\n"
           f"  Keep .request.json: your client needs it, and it is private.")
 
 
@@ -146,7 +148,7 @@ def status(url: str, ca: str | None, wait: bool) -> dict:
 
 def results_link(st: dict) -> str:
     """Where this team (and only this team) sees its scores and videos."""
-    site = json.loads(REQUEST.read_text()).get("url", "https://manipbench.com").rstrip("/")
+    site = json.loads(REQUEST.read_text()).get("url", "https://hackathon.sidclab.org").rstrip("/")
     return (f"your results (scores and videos, only your team sees them): {site}/#key={st['view_key']}\n"
             f"  keep this link private, like .request.json")
 
@@ -200,7 +202,7 @@ def main() -> None:
     p.add_argument("--trials", type=int, default=3, help="--mock: number of trials")
     p.add_argument("--trial-s", type=float, default=20.0, help="--mock: seconds per trial")
     p.add_argument("--instruction", default="pick up the cube", help="--mock: the instruction for every trial")
-    p.add_argument("--url", default="https://manipbench.com")
+    p.add_argument("--url", default="https://hackathon.sidclab.org")
     p.add_argument("--token", help="a run token, if we sent you one directly")
     p.add_argument("--checkpoint")
     p.add_argument("--ca", help="certificate file, only for a server with a self-signed certificate")

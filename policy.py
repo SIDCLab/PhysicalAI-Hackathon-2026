@@ -1,7 +1,7 @@
 """Your policy. Edit this file.
 
-act(obs) returns the arm's next target. The cell moves to it, then calls act again with a new observation,
-10 times a second. A policy that plans ahead may return several targets at once (a list of them).
+act(obs) returns the arm's next target, or a list of targets to play in order. When they have been played, act is
+called again with a new observation. act has no time limit: the arm holds still while it runs.
 """
 from __future__ import annotations
 
@@ -10,7 +10,8 @@ import numpy as np
 
 class Policy:
     CAMERAS = ["table", "side", "wrist"]  # the cameras you want, any subset
-    IMAGE_SIZE = (640, 480)               # (width, height) of the images you get
+    IMAGE_SIZE = (640, 480)               # (width, height) of the images you get: the whole camera frame, resized
+                                          # (not cropped); 640 x 480 squeezes the 16:9 frame, (640, 360) keeps its shape
     IMAGE_FORMAT = "png"                  # or "jpeg": about 7x smaller, for a slow connection
     ACTION = "joints"                     # what act returns: "joints" or "tcp" (see below)
     PREFETCH = False                      # True: if act returns many actions at once, plan the next ones while
@@ -39,6 +40,6 @@ class Policy:
                              and the table surface is at z ~ -335 mm. No IK needed.
         Example (tcp): 3 cm above the table at x 450, y 0, fingers down, gripper open
             return [450, 0, -305, -180, 0, 0, 0]
-        act is called again every 0.1 s: return where the arm should be, not a step from where it is.
+        Return where the arm should be, not a step from where it is.
         """
         return obs["joints"]  # placeholder: stay where you are
