@@ -19,4 +19,4 @@
 
 The projection model and its inverse are in `geometry.py` (numpy only). Use `pixel_to_base` to map a
 table-image pixel to a point on the table. These transforms match the twin's camera poses up to the residual
-errors in `rms_px`, so pixels in the v5 twin and on the real cell line up.
+errors in `rms_px`, so pixels in the v0.5 twin and on the real cell line up.

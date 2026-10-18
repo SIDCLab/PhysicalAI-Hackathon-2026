@@ -26,7 +26,7 @@ class Policy:
 
     def act(self, obs: dict):
         """obs["images"]   {camera: (H, W, 3) uint8 RGB}
-        obs["joints"]      [J1..J6 deg (the v5 twin's convention), gripper 0 open / 1 closed]
+        obs["joints"]      [J1..J6 deg (the v0.5 twin's convention), gripper 0 open / 1 closed]
         obs["tcp_pose"]    the fingertip [x, y, z mm, w, p, r deg]
         obs["trial"]["instruction"]  the task in words (you may ignore it)
         obs["depth"]       only with DEPTH: {"table": (400, 640), "wrist": (480, 848)} uint16, millimetres along each

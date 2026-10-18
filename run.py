@@ -4,7 +4,7 @@
     uv run run.py --submit       # send submission/submission.yaml; we approve it into a run
     uv run run.py --status       # is it approved yet? once it is: your results link
     uv run run.py                # during your slot: runs your approved submission
-    uv run run.py --download     # your run's recorded LeRobotDataset, for LeRobotDataset("manipbench/<run>")
+    uv run run.py --download     # your run's recorded LeRobotDataset
 
 Load your model in policy.py, or pass its path with --checkpoint <path> (given to Policy.__init__).
 """
@@ -197,10 +197,7 @@ def download(url: str, ca: str | None) -> None:
                 sys.exit("the download looks wrong; ask us in Slack")
             tar.extractall(root, members=names)
     tmp.unlink()
-    print(f"downloaded run {st['run_id']} to {dest}\n"
-          f'  from lerobot.datasets.lerobot_dataset import LeRobotDataset; ds = LeRobotDataset("manipbench/{st["run_id"]}")\n'
-          f"  lerobot-dataset-viz --repo-id manipbench/{st['run_id']} --root {dest} --episode-index 0\n"
-          f"  {dest}/manipbench.json says which trial each episode is")
+    print(f"downloaded run {st['run_id']} to {dest}")
 
 
 def main() -> None:

@@ -50,7 +50,7 @@ receives the robot's observation and returns the next action. After the action f
 
 **Action.** Choose one format with `ACTION` in `policy.py`:
 
-- `ACTION = "joints"`: `[J1, J2, J3, J4, J5, J6, gripper]`. Move the robot with joint angles, in degrees (the v5
+- `ACTION = "joints"`: `[J1, J2, J3, J4, J5, J6, gripper]`. Move the robot with joint angles, in degrees (the v0.5
   twin's convention). Recommended for learned robot policies.
 - `ACTION = "tcp"`: `[x, y, z, w, p, r, gripper]`. Move the fingertip to a target position and orientation; the
   robot works out the joints. Recommended for planners and AI agents.
@@ -121,8 +121,7 @@ To work with the data yourself, download your run's recorded LeRobotDataset (eve
 uv run run.py --download
 ```
 
-It goes to LeRobot's default dataset folder, so `LeRobotDataset("manipbench/<run_id>")` loads it, and
-`manipbench.json` in it says which rollout each episode is. Run it again after more rollouts to get the latest.
+It goes to LeRobot's default dataset folder. Run it again after more rollouts to get the latest.
 
 ## Recording
 
