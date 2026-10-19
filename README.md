@@ -81,11 +81,9 @@ uv run run.py --submit
 ```
 
 Post the request id it prints, such as `q3ac71f`, in `#data-and-testbed-requests` to book a slot (30 minutes).
-`ACTION`, `CAMERAS` and `DEPTH` come from `policy.py` by themselves. If objects and layout are both `same`, we set up
-the default scene (8 screws and the yellow bin, as in the twin) every rollout. Otherwise list every rollout in
-`placement.yaml`, one entry each: where each object goes (`submission/table_plan.png` shows the axes and the table),
-and optionally a `prompt`, the instruction your policy gets in `obs["trial"]["instruction"]` (default: your `task`). Anything that changes between rollouts, your policy has to
-find in the images.
+If objects and layout are both `same`, we set up the default scene every rollout. Otherwise list every rollout in
+`placement.yaml`, one entry each: where each object goes, and optionally a `prompt`, the instruction your policy gets
+in `obs["trial"]["instruction"]`.
 
 `--submit` also saves `.request.json`: keep that file, and keep it private (your client needs it, and it holds the
 secret for your request). We review the request and approve it, or reject it with a reason. Check where it stands:
@@ -109,10 +107,7 @@ You do nothing between rollouts. Come to the lab to watch if you can; every roll
 
 Every rollout is recorded and appears with its score and videos under **My results** on
 [hackathon.sidclab.org](https://hackathon.sidclab.org). Only your team sees them: open the link that
-`uv run run.py --status` prints (`https://hackathon.sidclab.org/#key=...`); your browser remembers it. Keep the link
-private, and send it to your teammates yourself. **Open in dataset viewer** shows a rollout's recorded LeRobotDataset
-episode: the three cameras, joint and fingertip state and your actions, frame by frame. The full leaderboard opens at
-the end of the event.
+`uv run run.py --status` prints (`https://hackathon.sidclab.org/#key=...`); your browser remembers it.
 
 To work with the data yourself, download your run's recorded LeRobotDataset (every recorded rollout so far; the link
 **download dataset** under My results gives the same file):
