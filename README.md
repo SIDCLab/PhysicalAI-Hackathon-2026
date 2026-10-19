@@ -84,7 +84,8 @@ uses our default scene (8 screws and the yellow bin, the same every rollout), th
 uv run run.py --submit
 ```
 
-Post the request id it prints, such as `q3ac71f`, in `#data-and-testbed-requests` to book a slot (30 minutes).
+Post the request id it prints, such as `q3ac71f`, in the `#data-and-testbed-requests` Slack channel to book a
+slot (30 minutes).
 In `placement.yaml`, list where each object goes and optionally a `prompt`, the instruction your policy gets in
 `obs["trial"]["instruction"]`: one entry for a scene that stays the same, or one entry per rollout if objects or layout
 are `different`. Send none and keep both `same`, and every rollout gets the default scene.
