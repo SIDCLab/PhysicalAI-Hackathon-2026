@@ -19,7 +19,7 @@ the actions you return and enforces every safety limit.
 | `mock_cell.py` | A local stand-in for the cell, with the same API and limits (`run.py --mock` starts it). |
 | `submission/submission.yaml` | Your team, model and task. |
 | `submission/placement.yaml` | Where the objects go in each rollout, and its prompt (only if they change). `table_plan.png` shows the table and the axes. |
-| `calibration/` | The real cameras' calibration, frame definitions and `geometry.py` (pixel ↔ table). |
+| `calibration/` | Optional: the real cameras' calibration (the starter's sim cameras already use it), for code that maps pixels or depth to robot coordinates. |
 | `cell_client.py` | The client library. Do not edit it. |
 
 A **run** is one approved submission: **10 rollouts** by default. A **rollout** is one attempt at your task, scored
