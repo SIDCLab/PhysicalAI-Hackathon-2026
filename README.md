@@ -77,17 +77,17 @@ there; it only checks that your policy and the cell understand each other.
 
 ## 4. Describe your task and submit
 
-Fill in `submission/submission.yaml` (each field has a comment), and `submission/placement.yaml` if your objects
-or layout change between rollouts, then send it:
+Fill in `submission/submission.yaml` (each field has a comment), and `submission/placement.yaml` unless your task
+uses our default scene (8 screws and the yellow bin, the same every rollout), then send it:
 
 ```bash
 uv run run.py --submit
 ```
 
 Post the request id it prints, such as `q3ac71f`, in `#data-and-testbed-requests` to book a slot (30 minutes).
-If objects and layout are both `same`, we set up the default scene every rollout. Otherwise list every rollout in
-`placement.yaml`, one entry each: where each object goes, and optionally a `prompt`, the instruction your policy gets
-in `obs["trial"]["instruction"]`.
+In `placement.yaml`, list where each object goes and optionally a `prompt`, the instruction your policy gets in
+`obs["trial"]["instruction"]`: one entry for a scene that stays the same, or one entry per rollout if objects or layout
+are `different`. Send none and keep both `same`, and every rollout gets the default scene.
 
 `--submit` also saves `.request.json`: keep that file, and keep it private (your client needs it, and it holds the
 secret for your request). We review the request and approve it, or reject it with a reason. Check where it stands:
