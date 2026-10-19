@@ -231,7 +231,7 @@ def handler(m: Mock):
                 cams = [c for c in ",".join(q.get("cameras", ["table,side,wrist"])).split(",") if c]
                 if any(c not in NATIVE for c in cams):
                     raise ValueError(f"unknown cameras {cams}; available {list(NATIVE)}")
-                w, h = int(q.get("width", ["640"])[0]), int(q.get("height", ["480"])[0])
+                w, h = int(q.get("width", ["640"])[0]), int(q.get("height", ["360"])[0])
                 if not (16 <= w <= 1920 and 16 <= h <= 1080):
                     raise ValueError("width/height out of range")
                 fmt, quality = q.get("format", ["png"])[0], int(q.get("quality", ["90"])[0])

@@ -10,8 +10,8 @@ import numpy as np
 
 class Policy:
     CAMERAS = ["table", "side", "wrist"]  # the cameras you want, any subset
-    IMAGE_SIZE = (640, 480)               # (width, height) of the images you get: the whole camera frame, resized
-                                          # (not cropped)
+    IMAGE_SIZE = (640, 360)               # (width, height) of the images you get: the whole 16:9 camera frame, resized
+                                          # (not cropped), as in the sim and the recorded datasets
     IMAGE_FORMAT = "png"                  # or "jpeg": about 7x smaller, for a slow connection
     ACTION = "joints"                     # what act returns: "joints" or "tcp" (see below)
     PREFETCH = False                      # True: if act returns many actions at once, plan the next ones while

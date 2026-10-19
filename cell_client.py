@@ -66,7 +66,7 @@ class CellClient:
             rtts.append(t2 - t1)
         return float(np.median(offs)), float(np.median(rtts))
 
-    def observe(self, cameras, size=(640, 480), fmt: str = "png", quality: int = 90, depth=()) -> dict:
+    def observe(self, cameras, size=(640, 360), fmt: str = "png", quality: int = 90, depth=()) -> dict:
         """{"t", "status", "trial", "queued", "joints" (7,), "tcp_pose", "images": {camera: HxWx3 RGB uint8}}
         and, with depth=["table"], "depth": {"table": 400x640 uint16 mm, 0 = no depth}.
 
