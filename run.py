@@ -137,7 +137,7 @@ def submit(url: str, ca: str | None) -> None:
     REQUEST.write_text(json.dumps({"url": url, **out}))
     REQUEST.chmod(0o600)
     print(f"submitted as request {out['request_id']}.\n"
-          f"  Next: book a 30-minute slot in the #data-and-testbed-requests Slack channel, and include this id.\n"
+          f"  Next: pick a 30-minute slot with this id at https://hackathon.sidclab.org/#calendar; we approve it for that slot.\n"
           f"  `uv run run.py --status` shows when it is approved, and then your results link.\n"
           f"  During your slot: `uv run run.py`, and leave it running.\n"
           f"  Keep .request.json: your client needs it, and it is private.")

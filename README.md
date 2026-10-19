@@ -84,8 +84,9 @@ uses our default scene (8 screws and the yellow bin, the same every rollout), th
 uv run run.py --submit
 ```
 
-Book a slot (30 minutes) in the `#data-and-testbed-requests` Slack channel, and include the request id it prints,
-such as `q3ac71f`.
+Then pick a 30-minute slot in the **Calendar** tab of [hackathon.sidclab.org](https://hackathon.sidclab.org/#calendar)
+with the request id it prints, such as `q3ac71f`; we approve your request for that slot. Questions: the
+`#data-and-testbed-requests` Slack channel.
 In `placement.yaml`, list where each object goes and optionally a `prompt`, the instruction your policy gets in
 `obs["trial"]["instruction"]`: one entry for a scene that stays the same, or one entry per rollout if objects or layout
 are `different`. Send none and keep both `same`, and every rollout gets the default scene.
