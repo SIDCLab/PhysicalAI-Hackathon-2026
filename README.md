@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
 
 An online platform for standardized submission, remote execution, and reproducible evaluation of robot policies on
-physical robots. Site: [hackathon.sidclab.org](https://hackathon.sidclab.org)
+physical robots.
 
 You develop your policy your own way, for example in Isaac Sim with our starter and your own data. We then evaluate
 it on our real robot, a FANUC ER-4iA: our server sends your machine an observation (`obs`), your policy returns the
