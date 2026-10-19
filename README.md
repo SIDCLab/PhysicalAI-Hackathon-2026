@@ -1,5 +1,9 @@
 # Physical AI Hackathon for the Factory Floor (2026): client package
 
+[![Website](https://img.shields.io/badge/website-hackathon.sidclab.org-ffbd00)](https://hackathon.sidclab.org)
+[![Track 3](https://img.shields.io/badge/track-3-141413)](https://uwm.edu/csi/nvidia-rockwell-hackathon-fall-2026/)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
+
 An online platform for standardized submission, remote execution, and reproducible evaluation of robot policies on
 physical robots. Site: [hackathon.sidclab.org](https://hackathon.sidclab.org)
 
